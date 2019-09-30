@@ -1,0 +1,30 @@
+{
+    "name": "org.apache.cordova.mqtt",
+    "displayName": "MQTT",
+    "version": "1.0.0",
+    "description": "A sample Apache Cordova application that responds to the deviceready event.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Apache Cordova Team",
+    "license": "Apache-2.0",
+    "dependencies": {
+        "cordova-android": "^6.2.3",
+        "cordova-plugin-app-event": "file:node_modules/cordova-plugin-app-event",
+        "cordova-plugin-device": "file:node_modules/cordova-plugin-device",
+        "cordova-plugin-mqtt": "git+https://github.com/arcoirislabs/cordova-plugin-mqtt.git",
+        "cordova-plugin-whitelist": "^1.3.2",
+        "de.appplant.cordova.plugin.local-notification": "git+https://github.com/Telerik-Verified-Plugins/LocalNotification.git"
+    },
+    "cordova": {
+        "plugins": {
+            "cordova-plugin-whitelist": {},
+            "cordova-plugin-mqtt": {},
+            "de.appplant.cordova.plugin.local-notification": {}
+        },
+        "platforms": [
+            "android"
+        ]
+    }
+}

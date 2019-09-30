@@ -1,0 +1,91 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "https://github.com/arcoirislabs/cordova-plugin-mqtt.git",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "https://github.com/arcoirislabs/cordova-plugin-mqtt.git",
+        "spec": "git+https://github.com/arcoirislabs/cordova-plugin-mqtt.git",
+        "type": "hosted",
+        "hosted": {
+          "type": "github",
+          "ssh": "git@github.com:arcoirislabs/cordova-plugin-mqtt.git",
+          "sshUrl": "git+ssh://git@github.com/arcoirislabs/cordova-plugin-mqtt.git",
+          "httpsUrl": "git+https://github.com/arcoirislabs/cordova-plugin-mqtt.git",
+          "gitUrl": "git://github.com/arcoirislabs/cordova-plugin-mqtt.git",
+          "shortcut": "github:arcoirislabs/cordova-plugin-mqtt",
+          "directUrl": "https://raw.githubusercontent.com/arcoirislabs/cordova-plugin-mqtt/master/package.json"
+        }
+      },
+      "/Users/hariharan/Harry/jai anna/MQTT/node_modules"
+    ]
+  ],
+  "_from": "git+https://github.com/arcoirislabs/cordova-plugin-mqtt.git",
+  "_id": "cordova-plugin-mqtt@0.3.8",
+  "_inCache": true,
+  "_location": "/cordova-plugin-mqtt",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "https://github.com/arcoirislabs/cordova-plugin-mqtt.git",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "https://github.com/arcoirislabs/cordova-plugin-mqtt.git",
+    "spec": "git+https://github.com/arcoirislabs/cordova-plugin-mqtt.git",
+    "type": "hosted",
+    "hosted": {
+      "type": "github",
+      "ssh": "git@github.com:arcoirislabs/cordova-plugin-mqtt.git",
+      "sshUrl": "git+ssh://git@github.com/arcoirislabs/cordova-plugin-mqtt.git",
+      "httpsUrl": "git+https://github.com/arcoirislabs/cordova-plugin-mqtt.git",
+      "gitUrl": "git://github.com/arcoirislabs/cordova-plugin-mqtt.git",
+      "shortcut": "github:arcoirislabs/cordova-plugin-mqtt",
+      "directUrl": "https://raw.githubusercontent.com/arcoirislabs/cordova-plugin-mqtt/master/package.json"
+    }
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/arcoirislabs/cordova-plugin-mqtt.git#7629f518e5f47edf98305c6acb0d712baf7b4c3d",
+  "_shasum": "b0bc95ed459212070e69542a8fea724e5f3d6647",
+  "_shrinkwrap": null,
+  "_spec": "https://github.com/arcoirislabs/cordova-plugin-mqtt.git",
+  "_where": "/Users/hariharan/Harry/jai anna/MQTT/node_modules",
+  "author": {
+    "name": "Arcoiris Labs",
+    "email": "amey@arcoirislabs.com"
+  },
+  "bugs": {
+    "url": "https://github.com/arcoirislabs/mqtt-cordova/issues"
+  },
+  "cordova": {
+    "id": "cordova-plugin-mqtt",
+    "platforms": [
+      "android"
+    ]
+  },
+  "dependencies": {},
+  "description": "Cordova plugin for MQTT (Message Queuing Telemetry Transport) protocol. Supports 3.x protocol. More platforms to be added in coming future.",
+  "devDependencies": {},
+  "gitHead": "7629f518e5f47edf98305c6acb0d712baf7b4c3d",
+  "homepage": "https://github.com/arcoirislabs/mqtt-cordova#readme",
+  "keywords": [
+    "cordova",
+    "ecosystem:cordova",
+    "mqtt",
+    "arcoirislabs"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-mqtt",
+  "optionalDependencies": {},
+  "readme": "# cordova-plugin-mqtt\n\n[![npm version](https://badge.fury.io/js/cordova-plugin-mqtt.svg)](https://badge.fury.io/js/cordova-plugin-mqtt)\n[![Join the chat at https://gitter.im/arcoirislabs/cordova-plugin-mqtt](https://badges.gitter.im/arcoirislabs/cordova-plugin-mqtt.svg)](https://gitter.im/arcoirislabs/cordova-plugin-mqtt?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)\n\n\ncordova-plugin-mqtt is plugin for building MQTT client for multiple platforms in Apache Cordova. Currently Android platform is present and next support is planned for iOS & Windows Phone.\n\n### Cordova platform support\n5.x (CLI)\n4.x (Cordova Android) & above.\n\n### Note\nFrom v0.3.x, the eventListner implementation shall be deprecated. Kindly take a note of this.\n\n### Installation\n\nInstall plugins via plugin repository or GitHub\n\n```sh\n$ cordova plugin add cordova-plugin-mqtt\n```\n\n```sh\n$ cordova plugin add https://github.com/arcoirislabs/cordova-plugin-mqtt.git\n```\n\n### Changelog\n\n1. Adding temporary support to iOS platform until a stable native support arrives. \n\n### Documentation\n\n[UPDATE]\n\nWe have written a tutorial for this plugin over [here](https://medium.com/@arcoirislabs/using-mqtt-on-apache-cordova-564d4fab526b). Kindly check out before you start developing. Cheers\n##### Methods\n1. [connect](#connect)\n2. [publish](#publish)\n3. [subscribe](#subscribe)\n4. [unsubscribe](#unsubscribe)\n5. [disconnect](#disconnect)\n6. [router](#router)\n7. [listen](#listen)\n\n##### Events\nDefault listeners you can program anywhere for following events\n - connected\n - disconnected\n - failure (connection)\n - subscribed\n - not subscribed\n - published\n - not published\n\nFor example you can configure the event in this way\n\n ```javascript\n //Deprecated\n document.addEventListener(\"connected\",function(e){\n  console.log(e.type)\n },false)\n```\n\n\n##### connect\nTo connect to a broker. This plugin doesn't supports mqtt:// protocol. Use tcp:// instead.\n\n```javascript\ncordova.plugins.CordovaMqTTPlugin.connect({\n    url:\"tcp://test.mosquitto.org\", //a public broker used for testing purposes only. Try using a self hosted broker for production.\n    port:1883,\n    clientId:\"YOUR_USER_ID_LESS_THAN_24_CHARS\",\n    connectionTimeout:3000,\n    willTopicConfig:{\n        qos:0, //default is 0\n        retain:true, //default is true\n        topic:\"<will topic>\",\n        payload:\"<will topic message>\"\n    },\n    username:\"uname\",\n    password:'pass',\n    keepAlive:60,\n    success:function(s){\n        console.log(\"connect success\");\n    },\n    error:function(e){\n        console.log(\"connect error\");\n    },\n    onConnectionLost:function (){\n        console.log(\"disconnect\");\n    },\n    routerConfig:{\n        router:routerObject //instantiated router object\n        publishMethod:\"emit\", //refer your custom router documentation to get the emitter/publishing function name. The parameter should be a string and not a function.\n        useDefaultRouter:false //Set false to use your own topic router implementation. Set true to use the stock topic router implemented in the plugin.\n    }\n})\n```\n\n##### publish\nTo publish to a channel. You can use this function.\n\n```javascript\ncordova.plugins.CordovaMqTTPlugin.publish({\n   topic:\"sampletopic\",\n   payload:\"hello from the plugin\",\n   qos:0,\n   retain:false,\n   success:function(s){\n\n   },\n   error:function(e){\n\n   }\n})\n```\nIn order to debug the publish call you can either go for callbacks in the function or events. Once published the function will call the \"published\" event & the success callback else the function will call both \"not published\" event & error callback.\n\n##### subscribe\nTo subscribe to a channel. You can use this function. You can also use wildcard based subscription using following ways\n\n```javascript\n//Simple subscribe\ncordova.plugins.CordovaMqTTPlugin.subscribe({\n   topic:\"sampletopic\",\n   qos:0,\n  success:function(s){\n\n  },\n  error:function(e){\n\n  }\n});\n\n//Single level wildcard subscribe\ncordova.plugins.CordovaMqTTPlugin.subscribe({\n   topic:\"/+/sampletopic\",\n   qos:0,\n  success:function(s){\n\n  },\n  error:function(e){\n\n  }\n});\n\n//multi level wildcard subscribe\ncordova.plugins.CordovaMqTTPlugin.subscribe({\n   topic:\"/sampletopic/#\",\n   qos:0,\n  success:function(s){\n\n  },\n  error:function(e){\n\n  }\n});\n\n//Using both kinds of wildcards\n\ncordova.plugins.CordovaMqTTPlugin.subscribe({\n   topic:\"/+/sampletopic/#\",\n   qos:0,\n  success:function(s){\n\n  },\n  error:function(e){\n\n  }\n})\n```\nThe success callback can notify you once you are successfully subscribed, so it will be called only once. The onPublish method is deprecated.\nIf you want to read the payload, you can listen to the event by the name of the topic. For example if you have subscribed to the topic called \"sampletopic\". You can read the payload in this way.\n\n#####Update:-\nWe are introducing topic pattern support to listen to certain topics in a way the developer wishes to. This topic pattern helps developer to make a common listener to different topics sharing same levels using single and multi-level wildcards.\n\n```javascript\n //Deprecated\n document.addEventListener(\"sampletopic\",function(e){\n  console.log(e.payload)\n },false);\n\n //New way to listen to topics\n cordova.plugins.CordovaMqTTPlugin.listen(\"/topic/+singlewc/#multiwc\",function(payload,params){\n  //Callback:- (If the user has published to /topic/room/hall)\n  //payload : contains payload data\n  //params : {singlewc:room,multiwc:hall}\n})\n```\n\n##### unsubscribe\n\nTo unsubscribe to a channel. You can use this function.\n\n```javascript\ncordova.plugins.CordovaMqTTPlugin.unsubscribe({\n   topic:\"sampletopic\",\n  success:function(s){\n\n  },\n  error:function(e){\n\n  }\n})\n```\nThis function will also fire the unsubscribe event which yiu can listen to using the document.addEventListener function. Also the event listener for the topic is removed automatically once the client successfully unsubscibes.\n\n\n##### disconnect\n\nTo disconnect yourself from a server, use following function\n```javascript\ncordova.plugins.CordovaMqTTPlugin.disconnect({\n  success:function(s){\n\n  },\n  error:function(e){\n\n  }\n})\n```\n\n##### router\n\nThis function provides you the access to all the topic router functions you have used. If you have used a the stock topic router you can access the payload for a topic by this method.\n```javascript\n//Declare this function in any scope to access the router function \"on\" to receive the payload for certain topic\ncordova.plugins.CordovaMqTTPlugin.router.on(\"/topic/+singlewc/#multiwc\",function(payload,params){\n  //Callback:- (If the user has published to /topic/room/hall)\n  //payload : contains payload data\n  //params : {singlewc:room,multiwc:hall}\n});\n\n//To get a callback on topic subscribe/unsubscribe event, you can listen by this method\ncordova.plugins.CordovaMqTTPlugin.router.onadd(function(topic){\n\n});\ncordova.plugins.CordovaMqTTPlugin.router.onremove(function(topic){\n\n});\n```\n\n##### listen\n\nThis function lets you listen to certain topic pattern specifically constructed by topic patters as shown below.\n```javascript\n//Declare this function in any scope to access the router function \"on\" to receive the payload for certain topic\ncordova.plugins.CordovaMqTTPlugin.listen(\"/topic/+singlewc/#multiwc\",function(payload,params){\n  //Callback:- (If the user has published to /topic/room/hall)\n  //payload : contains payload data\n  //params : {singlewc:room,multiwc:hall}\n});\n\n\n```\n\n### Todos\n\n - Add a stable iOS support in v0.3.0\n - Plan support for new platform (Windows Phone)\n - Add background service support in Android version to save the payload related from certain topics in a DB when the app is in background.\n\n\nLicense\n----\n\nMIT\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arcoirislabs/mqtt-cordova.git"
+  },
+  "version": "0.3.8"
+}
